@@ -3,7 +3,7 @@ import instance from '../instanceConfig'
 import './Row.css'
 
 
-function Row({title,fetchUrl}) {
+function Row({isPoster,title,fetchUrl}) {
 
     const base_url = "https://image.tmdb.org/t/p/original/";
     const [movies,setMovies] = useState([])
@@ -28,7 +28,9 @@ function Row({title,fetchUrl}) {
         <div className="movies_row">
             {
                 movies.map((movie)=>(
-                    <img className='movie' src={`${base_url}/${movie.backdrop_path}`} alt="" />
+                    <img className={`movie ${isPoster&& `poster`}`}
+                    src={`${base_url}/${isPoster?movie?.poster_path:movie?.backdrop_path}`} 
+                    alt="" />
                 ))
             }
         </div>
